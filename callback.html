@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>授權完成 - Jerry the Fox</title>
+<style>body{font-family:system-ui,sans-serif;max-width:720px;margin:40px auto;padding:0 16px;line-height:1.7}button{font-size:18px;padding:8px 20px}</style>
+</head><body>
+<h1>授權完成</h1>
+<p id="msg">正在讀取授權碼…</p>
+<button id="copy" onclick="copyCode()">複製授權碼</button>
+<p>授權碼只在本機使用，複製後即可關閉此頁。</p>
+<script>
+var code = new URLSearchParams(location.search).get('code') || '';
+code = code.replace(/#_$/, '');
+document.getElementById('msg').textContent = code ? '已取得授權碼（長度 ' + code.length + '）' : '網址中沒有授權碼';
+function copyCode(){ navigator.clipboard.writeText(code).then(function(){ document.getElementById('msg').textContent = '已複製到剪貼簿'; }); }
+</script>
+</body></html>
